@@ -1,0 +1,137 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@loop-engine/core':
+        specifier: ^0.1.0
+        version: 0.1.0
+      '@loop-engine/sdk':
+        specifier: ^0.1.0
+        version: 0.1.0
+    devDependencies:
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+packages:
+
+  '@loop-engine/actors@0.1.0':
+    resolution: {integrity: sha512-nNsrDto1Hz/a/BFsFjpivzhwKiRnCyr+LmDQhcKe6eruXgFw9UDOmVUb7gJsaQRDiEaPJJ3DNATsnf838SZUuA==}
+
+  '@loop-engine/adapter-memory@0.1.0':
+    resolution: {integrity: sha512-6EQ1DOW4xP7icPCrOgY47mCs/Ovj4aM2ztANCuw9PCqZzTsOsPJV+2w8O1L6oWmZqZalWV3SYO+3Xxk1SQJUaw==}
+
+  '@loop-engine/core@0.1.0':
+    resolution: {integrity: sha512-6PLOyWA2atlohbuj0VxZvnZFWYRWfwkYjMG/FRtg6wwFVemSxcd/sE8UVknzeBqY9s+TgodgCsBvECUImA5UAQ==}
+
+  '@loop-engine/dsl@0.1.0':
+    resolution: {integrity: sha512-hfrq/J9YuBs7uak2Dhg5vpP2+Gszhu7wVpp3lBR8IgTvVavbfSkyXVHLb8mFkDr2kqJ/vFKAiX8jB8AS3irOPA==}
+
+  '@loop-engine/events@0.1.0':
+    resolution: {integrity: sha512-OdRqYGJLl1YdsT5IPayiOM3LD4ucyhn4H3kNDFbgBg92BLajPRfzOOMaasJishQ392oL9WxG4BQAy0T1zZ9j4A==}
+
+  '@loop-engine/guards@0.1.0':
+    resolution: {integrity: sha512-6ZWr5Dh9h51iO4oq87AodRGPxdFUWQzc7KOvaHfo+2E/t1NdwvKavoKHBl5WOEnCupNIY8k5Zw+XPFcNz0Lxvw==}
+
+  '@loop-engine/observability@0.1.0':
+    resolution: {integrity: sha512-ESahLXKU/63BBrXbGDohA5OJZ/QaSP+uWwyVQ64jkkLg2ncLk1SdaFrCh32XbQxBxlbhjau24fDwfHA4wIkyAw==}
+
+  '@loop-engine/runtime@0.1.0':
+    resolution: {integrity: sha512-V/mNNpD9GVbngdntJenSMiI/kxnNqfrbOMQ7nIBF5LHCcK17gDTF1A25XR3VRRqAzYtc7xixRfKFBb9qNCkhWw==}
+    peerDependencies:
+      '@loop-engine/events': '>=0.1.0'
+
+  '@loop-engine/sdk@0.1.0':
+    resolution: {integrity: sha512-uXxZBMX9vz6hyS0FWZMHLMLcby3dm9WOjgc8WVNpED/+0uqJWa5YumFyRsfJNHbBKuLMUrINKs4dRrRQMXo0TA==}
+
+  '@loop-engine/signals@0.1.0':
+    resolution: {integrity: sha512-g9iJ3D8st79L2kq8DfsuSnToeRnnbLKs5MphRXV3Fk69RibRs0i+Kf3TkGUxDn6viRPXqSKt5VHMkVILbn2q3A==}
+
+  argparse@2.0.1:
+    resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+
+  js-yaml@4.1.1:
+    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
+    hasBin: true
+
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
+snapshots:
+
+  '@loop-engine/actors@0.1.0':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+
+  '@loop-engine/adapter-memory@0.1.0(@loop-engine/events@0.1.0)':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+      '@loop-engine/runtime': 0.1.0(@loop-engine/events@0.1.0)
+    transitivePeerDependencies:
+      - '@loop-engine/events'
+
+  '@loop-engine/core@0.1.0': {}
+
+  '@loop-engine/dsl@0.1.0':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+      js-yaml: 4.1.1
+      zod: 3.25.76
+
+  '@loop-engine/events@0.1.0':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+      zod: 3.25.76
+
+  '@loop-engine/guards@0.1.0':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+
+  '@loop-engine/observability@0.1.0':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+
+  '@loop-engine/runtime@0.1.0(@loop-engine/events@0.1.0)':
+    dependencies:
+      '@loop-engine/actors': 0.1.0
+      '@loop-engine/core': 0.1.0
+      '@loop-engine/dsl': 0.1.0
+      '@loop-engine/events': 0.1.0
+      '@loop-engine/guards': 0.1.0
+
+  '@loop-engine/sdk@0.1.0':
+    dependencies:
+      '@loop-engine/adapter-memory': 0.1.0(@loop-engine/events@0.1.0)
+      '@loop-engine/core': 0.1.0
+      '@loop-engine/dsl': 0.1.0
+      '@loop-engine/events': 0.1.0
+      '@loop-engine/guards': 0.1.0
+      '@loop-engine/observability': 0.1.0
+      '@loop-engine/runtime': 0.1.0(@loop-engine/events@0.1.0)
+      '@loop-engine/signals': 0.1.0
+
+  '@loop-engine/signals@0.1.0':
+    dependencies:
+      '@loop-engine/core': 0.1.0
+      '@loop-engine/events': 0.1.0
+
+  argparse@2.0.1: {}
+
+  js-yaml@4.1.1:
+    dependencies:
+      argparse: 2.0.1
+
+  typescript@5.9.3: {}
+
+  zod@3.25.76: {}

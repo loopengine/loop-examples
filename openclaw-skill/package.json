@@ -1,0 +1,20 @@
+{
+  "name": "@loop-engine/openclaw-skill",
+  "version": "0.1.0",
+  "description": "OpenClaw AgentSkill for Loop Engine governance",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@loop-engine/core": "^0.1.0",
+    "@loop-engine/sdk": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
