@@ -1,7 +1,7 @@
 {
-  "name": "@loop-engine/openclaw-skill",
+  "name": "@loop-engine/commerce-gateway-example",
   "version": "0.1.0",
-  "description": "OpenClaw AgentSkill for Loop Engine governance",
+  "description": "Loop Engine × LLM Commerce Gateway integration example",
   "license": "Apache-2.0",
   "private": true,
   "type": "module",
@@ -11,8 +11,11 @@
     "lint": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
     "@loop-engine/core": "^0.1.0",
-    "@loop-engine/sdk": "^0.1.0"
+    "@loop-engine/runtime": "^0.1.0",
+    "@loop-engine/sdk": "^0.1.0",
+    "openai": "^4.0.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
