@@ -1,13 +1,18 @@
 # loop-examples
 
-Reference examples for Loop Engine integrations.
+Example implementations and integrations for the Loop Engine runtime.
 
-## Included examples
+## Table of contents
 
-- `openclaw-skill`: OpenClaw skill for governed loop execution and human approval gates over messaging channels.
-- `commerce-gateway-skill`: LLM Commerce Gateway integration with governed procurement approvals.
-- `expense-approval`: Human approval flow reference.
-- `demand-signal`: Signal-to-loop trigger reference.
-- `postgres-persistence`: Persistence adapter reference.
-- `event-streaming`: Event bus subscription reference.
-- `ai-actors/claude` and `ai-actors/openai`: Provider-parity actor references.
+- [openclaw-skill](./openclaw-skill/)
+- [commerce-gateway-skill](./commerce-gateway-skill/)
+- [expense-approval](./expense-approval/)
+- [demand-signal](./demand-signal/)
+- [postgres-persistence](./postgres-persistence/)
+- [event-streaming](./event-streaming/)
+- [ai-actors/claude](./ai-actors/claude/)
+- [ai-actors/openai](./ai-actors/openai/)
+
+## License
+
+MIT

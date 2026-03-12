@@ -1,5 +1,6 @@
 import { aggregateId, transitionId, type LoopDefinition, type LoopInstance } from "@loop-engine/core";
 import { getLoopDefinitions, getLoopSystem } from "../lib/engine";
+import { formatApprovalDecision } from "../lib/messenger";
 import type { OpenClawContext } from "../types";
 
 function findTransition(
@@ -51,7 +52,7 @@ export async function handleApprove(instanceId: string, ctx: OpenClawContext): P
   });
 
   if (result.status === "executed") {
-    return `✅ Approved. Loop ${instanceId} advanced to: ${result.toState}`;
+    return formatApprovalDecision(instance, true);
   }
   if (result.status === "guard_failed") {
     return `❌ Approval blocked by policy: ${result.guardFailures?.[0]?.guardId ?? "unknown_guard"}`;
@@ -87,7 +88,7 @@ export async function handleReject(instanceId: string, ctx: OpenClawContext): Pr
   });
 
   if (result.status === "executed") {
-    return `✅ Rejected. Loop ${instanceId} advanced to: ${result.toState}`;
+    return formatApprovalDecision(instance, false);
   }
   return `❌ Transition failed: ${result.status}`;
 }

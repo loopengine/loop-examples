@@ -1,0 +1,76 @@
+id: ai.purchase-order
+version: 1.0.0
+domain: procurement
+description: >
+  Governed Vercel AI SDK purchase-order tool execution with mandatory human approval
+  before consequential procurement actions are executed.
+metadata:
+  name: Governed purchase-order tool call
+  tags: [vercel-ai, procurement, approval]
+
+states:
+  - id: INITIATED
+  - id: AI_ANALYSIS
+  - id: PENDING_HUMAN_APPROVAL
+  - id: EXECUTING
+  - id: EXECUTED
+    isTerminal: true
+  - id: REJECTED
+    isTerminal: true
+
+initialState: INITIATED
+
+transitions:
+  - id: start_analysis
+    from: INITIATED
+    to: AI_ANALYSIS
+    allowedActors: [ai-agent, automation]
+
+  - id: request_human_approval
+    from: AI_ANALYSIS
+    to: PENDING_HUMAN_APPROVAL
+    allowedActors: [ai-agent]
+    guards:
+      - id: approval_gate_required
+        severity: hard
+        evaluatedBy: external
+        description: AI analysis always routes to explicit human approval.
+        failureMessage: Human approval gate is required before execution.
+
+  - id: execute_without_approval
+    from: AI_ANALYSIS
+    to: EXECUTING
+    allowedActors: [ai-agent, automation]
+
+  - id: approve_execution
+    from: PENDING_HUMAN_APPROVAL
+    to: EXECUTING
+    allowedActors: [human]
+    guards:
+      - id: approval_actor_must_be_human
+        severity: hard
+        evaluatedBy: external
+        description: Only a human actor may approve execution.
+        failureMessage: Approval actor must be human.
+
+  - id: reject_execution
+    from: PENDING_HUMAN_APPROVAL
+    to: REJECTED
+    allowedActors: [human]
+    guards:
+      - id: rejection_actor_must_be_human
+        severity: hard
+        evaluatedBy: external
+        description: Only a human actor may reject execution.
+        failureMessage: Rejection actor must be human.
+
+  - id: mark_executed
+    from: EXECUTING
+    to: EXECUTED
+    allowedActors: [automation, ai-agent]
+
+outcome:
+  id: purchase_order_completed
+  description: Purchase order request completed through governed execution path.
+  valueUnit: purchase_order
+  measurable: true
