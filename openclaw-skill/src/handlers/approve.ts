@@ -1,5 +1,6 @@
 import { aggregateId, transitionId, type LoopDefinition, type LoopInstance } from "@loop-engine/core";
 import { getLoopDefinitions, getLoopSystem } from "../lib/engine";
+import { guardEvidence } from "../lib/guardEvidence";
 import { formatApprovalDecision } from "../lib/messenger";
 import type { OpenClawContext } from "../types";
 
@@ -38,17 +39,19 @@ export async function handleApprove(instanceId: string, ctx: OpenClawContext): P
     return `❌ No approval transition available from state: ${instance.currentState}`;
   }
 
+  const rawApprovalEvidence = {
+    approved: true,
+    approvedAt: new Date().toISOString(),
+    approvedVia: ctx.channel,
+    approvedBy: ctx.userId,
+    approvedRole: ctx.userRole ?? "operator"
+  };
+
   const result = await engine.transition({
     aggregateId: aggregateId(instanceId),
     transitionId: transitionId(transition),
     actor: { type: "human", id: ctx.userId },
-    evidence: {
-      approved: true,
-      approvedAt: new Date().toISOString(),
-      approvedVia: ctx.channel,
-      approvedBy: ctx.userId,
-      approvedRole: ctx.userRole ?? "operator"
-    }
+    evidence: guardEvidence(rawApprovalEvidence)
   });
 
   if (result.status === "executed") {
@@ -75,16 +78,18 @@ export async function handleReject(instanceId: string, ctx: OpenClawContext): Pr
     return `❌ No rejection transition available from state: ${instance.currentState}`;
   }
 
+  const rawRejectionEvidence = {
+    approved: false,
+    rejectedAt: new Date().toISOString(),
+    rejectedVia: ctx.channel,
+    rejectedBy: ctx.userId
+  };
+
   const result = await engine.transition({
     aggregateId: aggregateId(instanceId),
     transitionId: transitionId(transition),
     actor: { type: "human", id: ctx.userId },
-    evidence: {
-      approved: false,
-      rejectedAt: new Date().toISOString(),
-      rejectedVia: ctx.channel,
-      rejectedBy: ctx.userId
-    }
+    evidence: guardEvidence(rawRejectionEvidence)
   });
 
   if (result.status === "executed") {

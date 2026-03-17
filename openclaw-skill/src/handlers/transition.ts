@@ -1,5 +1,6 @@
 import { aggregateId, transitionId } from "@loop-engine/core";
 import { getLoopSystem } from "../lib/engine";
+import { guardEvidence } from "../lib/guardEvidence";
 import type { OpenClawContext } from "../types";
 
 export async function handleTransition(
@@ -13,14 +14,16 @@ export async function handleTransition(
     return `❌ Loop instance ${instanceId} not found.`;
   }
 
+  const rawEvidence = {
+    channel: ctx.channel,
+    requestedBy: ctx.userId
+  };
+
   const result = await engine.transition({
     aggregateId: aggregateId(instanceId),
     transitionId: transitionId(requestedTransitionId),
     actor: { type: "human", id: ctx.userId },
-    evidence: {
-      channel: ctx.channel,
-      requestedBy: ctx.userId
-    }
+    evidence: guardEvidence(rawEvidence)
   });
 
   if (result.status === "executed") {
