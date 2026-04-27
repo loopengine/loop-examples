@@ -15,4 +15,7 @@ Example implementations and integrations for the Loop Engine runtime.
 
 ## License
 
-MIT
+This repository is licensed under the Apache License 2.0.
+
+Exception:
+- `openclaw-skill/` is licensed under MIT-0.
